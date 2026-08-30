@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.speakscreen.app">
+
+    <!-- Screen ပေါ်မှာ ခလုတ်အပျံလေး ပေါ်ဖို့ ခွင့်ပြုချက် -->
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW"/>
+
+    <application
+        android:allowBackup="true"
+        android:label="Speak Screen"
+        android:theme="@style/Theme.AppCompat.Light.NoActionBar">
+        
+        <!-- ပင်မ App ဖွင့်မည့် မျက်နှာပြင် -->
+        <activity
+            android:name=".MainActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <!-- စာဖတ်ပေးမည့် နောက်ကွယ်က Service -->
+        <service
+            android:name=".SpeakService"
+            android:permission="android.permission.BIND_ACCESSIBILITY_SERVICE"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.accessibilityservice.AccessibilityService" />
+            </intent-filter>
+            <meta-data
+                android:name="android.accessibilityservice"
+                android:resource="@xml/accessibility_service_config" />
+        </service>
+        
+    </application>
+</manifest>
